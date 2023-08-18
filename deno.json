@@ -1,0 +1,45 @@
+{
+  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+  "lock": false,
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "build": "deno run -A dev.ts build",
+    "preview": "deno run -A main.ts",
+    "update": "deno run -A -r https://fresh.deno.dev/update ."
+  },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    },
+    "exclude": [
+      "_fresh"
+    ]
+  },
+  "fmt": {
+    "exclude": [
+      "_fresh"
+    ]
+  },
+  "imports": {
+    "~components/": "./components/",
+    "~islands/": "./islands/",
+    "~lib/": "./lib/",
+    "$fresh/": "https://deno.land/x/fresh@1.4.2/",
+    "preact": "https://esm.sh/preact@10.17.0",
+    "preact/": "https://esm.sh/preact@10.17.0/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0",
+    "$std/": "https://deno.land/std@0.198.0/",
+    "@unocss/preset-attributify": "https://esm.sh/@unocss/preset-attributify@0.55.1",
+    "@unocss/preset-uno": "https://esm.sh/@unocss/preset-uno@0.55.0"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}
