@@ -1,18 +1,16 @@
 import { defineRoute } from "$fresh/server.ts";
 import postgres from "postgresjs";
 import Skill from "~models/skill.ts";
+import Game from "~models/game.ts";
 
-export default defineRoute(async (_, { params: { gameName } }) => {
+export default defineRoute(async (_, { params: { gameSlug } }) => {
   const sql = postgres();
-  const skills = await sql<Skill[]>`
-    SELECT skill.id, skill.name FROM skill
-    JOIN game ON game.id = skill.game_id
-    WHERE game.name = ${gameName};
-  `;
+  const [game] = await sql<Game[]>`SELECT id, name FROM game WHERE slug = ${gameSlug}`;
+  const skills = await sql<Skill[]>`SELECT name FROM skill WHERE game_id = ${game.id};`;
   return (
     <>
       {/* @ts-ignore: attributify */}
-      <h1 text="3xl" font="bold">{gameName}</h1>
+      <a href={`/games/${gameSlug}`} text="3xl" font="bold">{game.name}</a>
       {/* @ts-ignore: attributify */}
       <h2 text="xl">Skills</h2>
       <ul>

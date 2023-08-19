@@ -6,9 +6,9 @@ import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/_layout.tsx";
 import * as $3 from "./routes/games.tsx";
-import * as $4 from "./routes/games/[gameName].tsx";
-import * as $5 from "./routes/games/[gameName]/skills.tsx";
-import * as $6 from "./routes/games/[gameName]/traits.tsx";
+import * as $4 from "./routes/games/[gameSlug].tsx";
+import * as $5 from "./routes/games/[gameSlug]/skills.tsx";
+import * as $6 from "./routes/games/[gameSlug]/traits.tsx";
 import * as $7 from "./routes/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 
@@ -18,9 +18,9 @@ const manifest = {
     "./routes/_app.tsx": $1,
     "./routes/_layout.tsx": $2,
     "./routes/games.tsx": $3,
-    "./routes/games/[gameName].tsx": $4,
-    "./routes/games/[gameName]/skills.tsx": $5,
-    "./routes/games/[gameName]/traits.tsx": $6,
+    "./routes/games/[gameSlug].tsx": $4,
+    "./routes/games/[gameSlug]/skills.tsx": $5,
+    "./routes/games/[gameSlug]/traits.tsx": $6,
     "./routes/index.tsx": $7,
   },
   islands: {
