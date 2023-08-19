@@ -6,7 +6,7 @@ interface Game {
   name: string;
 }
 
-export default defineRoute(async (req, ctx) => {
+export default defineRoute(async () => {
   const games: Game[] = await postgrestRequest().path("game").json();
   return (
     <>

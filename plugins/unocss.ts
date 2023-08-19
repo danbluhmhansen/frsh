@@ -1,7 +1,4 @@
-import {
-  createGenerator,
-  type UserConfig,
-} from "https://esm.sh/@unocss/core@0.55.0";
+import { createGenerator, type UserConfig } from "https://esm.sh/@unocss/core@0.55.1";
 import { Plugin } from "$fresh/server.ts";
 
 const unoResetCSS = `/* reset */
@@ -10,9 +7,7 @@ const unoResetCSS = `/* reset */
 export default function unocss(config: UserConfig, runtime = true): Plugin {
   return {
     name: "unocss",
-    entrypoints: runtime
-      ? { "main": import.meta.resolve("./unocss/main.ts") }
-      : undefined,
+    entrypoints: runtime ? { "main": import.meta.resolve("./unocss/main.ts") } : undefined,
     async renderAsync(ctx) {
       const { htmlText } = await ctx.renderAsync();
       const { css } = await createGenerator(config).generate(htmlText);

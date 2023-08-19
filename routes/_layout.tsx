@@ -3,8 +3,9 @@ import { LayoutProps } from "$fresh/server.ts";
 export default function Layout({ Component }: LayoutProps) {
   return (
     <div class="min-h-screen bg-green-300 dark:bg-green-900 dark:text-white">
-      <nav>
-        <ul class="flex flex-col sm:flex-row items-center justify-center sm:space-x-2">
+      <nav class="py-4">
+        {/* @ts-ignore: attributify */}
+        <ul flex="~ col sm:row" items="center" justify="center" space="y-4 sm:x-4 sm:y-0">
           <li>
             <a href="/">Home</a>
           </li>

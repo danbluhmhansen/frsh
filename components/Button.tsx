@@ -13,7 +13,7 @@ export function Button(props: JSX.HTMLAttributes<HTMLButtonElement>) {
       outline="focus:none"
       p="x-4 y-2"
       ring="focus:4 focus:yellow-400 dark:focus:yellow-500"
-      rounded=""
+      rounded
       text="sm center hover:white yellow-600 dark:yellow-300"
     />
   );
