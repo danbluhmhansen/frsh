@@ -28,8 +28,10 @@
   "imports": {
     "~components/": "./components/",
     "~islands/": "./islands/",
-    "~lib/": "./lib/",
+    "~models/": "./models/",
+    "~routes/": "./routes/",
     "$fresh/": "https://deno.land/x/fresh@1.4.2/",
+    "postgresjs": "https://deno.land/x/postgresjs@v3.3.5/mod.js",
     "preact": "https://esm.sh/preact@10.17.0",
     "preact/": "https://esm.sh/preact@10.17.0/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",

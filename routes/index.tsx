@@ -6,16 +6,20 @@ export default function Home() {
   return (
     <>
       <img
-        class="my-6"
         src="/logo.svg"
         width="128"
         height="128"
         alt="the Fresh logo: a sliced lemon dripping with juice"
+        // @ts-ignore: attributify
+        m="y-6"
       />
-      <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
-      <p class="my-4">
+      {/* @ts-ignore: attributify */}
+      <h1 text="3xl" font="bold">Welcome to Fresh</h1>
+      {/* @ts-ignore: attributify */}
+      <p m="y-4">
         Try updating this message in the
-        <code class="mx-2">./routes/index.tsx</code> file, and refresh.
+        {/* @ts-ignore: attributify */}
+        <code m="x-2">./routes/index.tsx</code> file, and refresh.
       </p>
       <Counter count={count} />
     </>

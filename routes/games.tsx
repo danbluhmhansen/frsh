@@ -1,18 +1,16 @@
-import postgrestRequest from "~lib/postgrest-request.ts";
 import { defineRoute } from "$fresh/server.ts";
-
-interface Game {
-  id: string;
-  name: string;
-}
+import postgres from "postgresjs";
+import Game from "~models/game.ts";
 
 export default defineRoute(async () => {
-  const games: Game[] = await postgrestRequest().path("game").json();
+  const sql = postgres();
+  const games = await sql<Game[]>`SELECT id, name FROM game;`;
   return (
     <>
-      <h1 class="text-4xl font-bold">Games</h1>
+      {/* @ts-ignore: attributify */}
+      <h1 text="3xl" font="bold">Games</h1>
       <ul>
-        {games.map((game) => <li>{game.name}</li>)}
+        {games.map((game) => <li><a href={`/games/${game.name}`}>{game.name}</a></li>)}
       </ul>
     </>
   );
