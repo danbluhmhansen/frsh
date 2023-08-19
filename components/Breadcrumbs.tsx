@@ -5,7 +5,7 @@ interface Props extends JSX.HTMLAttributes {
 }
 
 export function Breadcrumbs({ children, url }: Props) {
-  const segments = url.pathname.substring(1).split("/").map((_, i, s) => `/${s.slice(0, i + 1).join("/")}`).reverse();
+  const segments = url.pathname.substring(1).split("/").slice(0, -1).map((_, i, s) => `/${s.slice(0, i + 1).join("/")}`).reverse();
   const links = toChildArray(children).reverse().map((child, i) => (
     <>
       {/* @ts-ignore: attributify */}
