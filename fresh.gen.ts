@@ -8,9 +8,10 @@ import * as $2 from "./routes/_layout.tsx";
 import * as $3 from "./routes/games.tsx";
 import * as $4 from "./routes/games/[gameSlug].tsx";
 import * as $5 from "./routes/games/[gameSlug]/actors/[actorKindSlug].tsx";
-import * as $6 from "./routes/games/[gameSlug]/skills.tsx";
-import * as $7 from "./routes/games/[gameSlug]/traits.tsx";
-import * as $8 from "./routes/index.tsx";
+import * as $6 from "./routes/games/[gameSlug]/actors/[actorKindSlug]/[actorSlug].tsx";
+import * as $7 from "./routes/games/[gameSlug]/skills.tsx";
+import * as $8 from "./routes/games/[gameSlug]/traits.tsx";
+import * as $9 from "./routes/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 
 const manifest = {
@@ -21,9 +22,10 @@ const manifest = {
     "./routes/games.tsx": $3,
     "./routes/games/[gameSlug].tsx": $4,
     "./routes/games/[gameSlug]/actors/[actorKindSlug].tsx": $5,
-    "./routes/games/[gameSlug]/skills.tsx": $6,
-    "./routes/games/[gameSlug]/traits.tsx": $7,
-    "./routes/index.tsx": $8,
+    "./routes/games/[gameSlug]/actors/[actorKindSlug]/[actorSlug].tsx": $6,
+    "./routes/games/[gameSlug]/skills.tsx": $7,
+    "./routes/games/[gameSlug]/traits.tsx": $8,
+    "./routes/index.tsx": $9,
   },
   islands: {
     "./islands/Counter.tsx": $$0,

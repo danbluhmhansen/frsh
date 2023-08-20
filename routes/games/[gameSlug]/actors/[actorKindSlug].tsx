@@ -1,16 +1,23 @@
 import { defineRoute } from "$fresh/server.ts";
 import postgres from "postgresjs";
 import Actor from "~models/actor.ts";
-import ActorKind from "~models/actorKind.ts";
+import Game from "~models/game.ts";
+import Error404 from "~routes/_404.tsx";
 
 export default defineRoute(async (_, { params: { gameSlug, actorKindSlug } }) => {
   const sql = postgres();
-  const [actorKind] = await sql<ActorKind[]>`SELECT id, name FROM actor_kind WHERE slug = ${actorKindSlug}`;
-  const actors = await sql<Actor[]>`SELECT name, slug FROM actor WHERE kind_id = ${actorKind.id}`;
+  const [{ name: gameName }] = await sql<Game[]>`SELECT id, name FROM game WHERE slug = ${gameSlug}`;
+  if (!gameName) return <Error404 />;
+  const actors = await sql<Actor[]>`
+    SELECT actor.name, actor.slug
+    FROM actor
+    JOIN actor_kind ON actor_kind.id = actor.kind_id
+    WHERE actor_kind.slug = ${actorKindSlug}
+  `;
   return (
     <>
       {/* @ts-ignore: attributify */}
-      <a href={`/games/${gameSlug}/actors/${actorKindSlug}`} text="3xl" font="bold">{actorKind.name}</a>
+      <a href={`/games/${gameSlug}`} text="3xl" font="bold">{gameName}</a>
       <ul>
         {actors.map((actor) => (
           <li>

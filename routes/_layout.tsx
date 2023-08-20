@@ -3,7 +3,7 @@ import { LayoutProps } from "$fresh/server.ts";
 export default function Layout({ Component }: LayoutProps) {
   return (
     // @ts-ignore: attributify
-    <div min-h="screen" bg="green-300 dark:green-900" text="dark:white">
+    <div min-h="screen" bg="slate-300 dark:slate-900" text="dark:white">
       {/* @ts-ignore: attributify */}
       <nav p="y-4">
         {/* @ts-ignore: attributify */}
@@ -17,7 +17,7 @@ export default function Layout({ Component }: LayoutProps) {
         </ul>
       </nav>
       {/* @ts-ignore: attributify */}
-      <main container m="x-auto" flex="~ col" items="center" justify="center">
+      <main container m="x-auto" flex="~ col" items="center" justify="center" gap="4">
         <Component />
       </main>
     </div>
