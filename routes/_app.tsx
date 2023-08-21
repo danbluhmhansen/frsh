@@ -1,6 +1,6 @@
-import { AppProps } from "$fresh/server.ts";
+import { defineApp } from "$fresh/server.ts";
 
-export default function App({ Component }: AppProps) {
+export default defineApp((_, ctx) => {
   return (
     <html lang="en">
       <head>
@@ -9,8 +9,8 @@ export default function App({ Component }: AppProps) {
         <title>frsh</title>
       </head>
       <body>
-        <Component />
+        <ctx.Component />
       </body>
     </html>
   );
-}
+});

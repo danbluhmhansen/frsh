@@ -1,14 +1,11 @@
 import { defineRoute } from "$fresh/server.ts";
 import postgres from "postgresjs";
-import Trait from "~models/trait.ts";
-import Game from "~models/game.ts";
-import Error404 from "~routes/_404.tsx";
 
-export default defineRoute(async (_, { params: { gameSlug } }) => {
+export default defineRoute(async (_, { params: { gameSlug }, renderNotFound }) => {
   const sql = postgres();
-  const [{ name: gameName }] = await sql<Game[]>`SELECT id, name FROM game WHERE slug = ${gameSlug}`;
-  if (!gameName) return <Error404 />;
-  const traits = await sql<Trait[]>`
+  const [game] = await sql`SELECT name FROM game WHERE slug = ${gameSlug};`;
+  if (!game) return renderNotFound();
+  const traits = await sql`
     SELECT trait.name
     FROM trait
     JOIN game ON game.id = trait.game_id
@@ -17,7 +14,7 @@ export default defineRoute(async (_, { params: { gameSlug } }) => {
   return (
     <>
       {/* @ts-ignore: attributify */}
-      <a href={`/games/${gameSlug}`} text="3xl" font="bold">{gameName}</a>
+      <a href={`/games/${gameSlug}`} text="3xl" font="bold">{game.name}</a>
       {/* @ts-ignore: attributify */}
       <h1 text="xl">Traits</h1>
       <ul>

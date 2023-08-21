@@ -5,7 +5,7 @@ export default defineRoute(() => {
   return (
     <>
       <Head>
-        <title>404 - Page not found</title>
+        <title>500 - Internal server error</title>
       </Head>
       <img
         src="/logo.svg"
@@ -16,11 +16,7 @@ export default defineRoute(() => {
         m="y-6"
       />
       {/* @ts-ignore: attributify */}
-      <h1 text="3xl" font="bold">404 - Page not found</h1>
-      {/* @ts-ignore: attributify */}
-      <p m="y-4">
-        The page you were looking for doesn't exist.
-      </p>
+      <h1 text="3xl" font="bold">500 - Internal server error</h1>
     </>
   );
 });

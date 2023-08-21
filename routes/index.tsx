@@ -1,8 +1,9 @@
-import { useSignal } from "@preact/signals";
+import { signal } from "@preact/signals";
+import { defineRoute } from "$fresh/server.ts";
 import Counter from "~islands/Counter.tsx";
 
-export default function Home() {
-  const count = useSignal(3);
+export default defineRoute(() => {
+  const count = signal(3);
   return (
     <>
       <img
@@ -24,4 +25,4 @@ export default function Home() {
       <Counter count={count} />
     </>
   );
-}
+});

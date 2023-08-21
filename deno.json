@@ -28,7 +28,6 @@
   "imports": {
     "~components/": "./components/",
     "~islands/": "./islands/",
-    "~models/": "./models/",
     "~routes/": "./routes/",
     "$fresh/": "https://deno.land/x/fresh@1.4.2/",
     "postgresjs": "https://deno.land/x/postgresjs@v3.3.5/mod.js",

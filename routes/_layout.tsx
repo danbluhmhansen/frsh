@@ -1,6 +1,6 @@
-import { LayoutProps } from "$fresh/server.ts";
+import { defineLayout } from "$fresh/server.ts";
 
-export default function Layout({ Component }: LayoutProps) {
+export default defineLayout((_, ctx) => {
   return (
     // @ts-ignore: attributify
     <div min-h="screen" bg="slate-300 dark:slate-900" text="dark:white">
@@ -18,8 +18,8 @@ export default function Layout({ Component }: LayoutProps) {
       </nav>
       {/* @ts-ignore: attributify */}
       <main container m="x-auto" flex="~ col" items="center" justify="center" gap="4">
-        <Component />
+        <ctx.Component />
       </main>
     </div>
   );
-}
+});
