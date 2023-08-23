@@ -1,6 +1,21 @@
 import { signal } from "@preact/signals";
-import { defineRoute } from "$fresh/server.ts";
+import { defineRoute, Handlers } from "$fresh/server.ts";
 import Counter from "~islands/Counter.tsx";
+import { Button } from "~components/Button.tsx";
+
+export const handler: Handlers = {
+  async POST(req) {
+    const form = await req.formData();
+    const email = form.get("email")?.toString();
+    console.log(email);
+    const headers = new Headers();
+    headers.set("location", "/");
+    return new Response(null, {
+      status: 303, // See Other
+      headers,
+    });
+  },
+};
 
 export default defineRoute(() => {
   const count = signal(3);
@@ -23,6 +38,12 @@ export default defineRoute(() => {
         <code m="x-2">./routes/index.tsx</code> file, and refresh.
       </p>
       <Counter count={count} />
+      {/* @ts-ignore: attributify */}
+      <form method="post" flex="~ col" gap="2">
+        {/* @ts-ignore: attributify */}
+        <input type="email" name="email" value="" bg="dark:slate-900" border="~ invalid:red" p="x-2 y-1" rounded />
+        <Button type="submit">Subscribe</Button>
+      </form>
     </>
   );
 });

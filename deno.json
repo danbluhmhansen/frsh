@@ -37,10 +37,11 @@
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0",
     "$std/": "https://deno.land/std@0.198.0/",
-    "@unocss/preset-attributify": "https://esm.sh/@unocss/preset-attributify@0.55.1",
-    "@unocss/preset-icons": "https://esm.sh/@unocss/preset-icons@0.55.1",
-    "@unocss/preset-uno": "https://esm.sh/@unocss/preset-uno@0.55.1",
-    "@unocss/transformer-attributify-jsx": "https://esm.sh/@unocss/transformer-attributify-jsx@0.55.1"
+    "@unocss/preset-attributify": "https://esm.sh/@unocss/preset-attributify@0.55.2",
+    "@unocss/preset-icons": "https://esm.sh/@unocss/preset-icons@0.55.2",
+    "@unocss/preset-typography": "https://esm.sh/@unocss/preset-typography@0.55.2",
+    "@unocss/preset-uno": "https://esm.sh/@unocss/preset-uno@0.55.2",
+    "@unocss/transformer-attributify-jsx": "https://esm.sh/@unocss/transformer-attributify-jsx@0.55.2"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

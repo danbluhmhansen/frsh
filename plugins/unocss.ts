@@ -1,4 +1,4 @@
-import { createGenerator, type UserConfig } from "https://esm.sh/@unocss/core@0.55.1";
+import { createGenerator, type UserConfig } from "https://esm.sh/@unocss/core@0.55.2";
 import { Plugin } from "$fresh/server.ts";
 
 const unoResetCSS = `/* reset */

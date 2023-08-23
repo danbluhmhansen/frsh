@@ -3,7 +3,7 @@ import { defineLayout } from "$fresh/server.ts";
 export default defineLayout((_, ctx) => {
   return (
     // @ts-ignore: attributify
-    <div min-h="screen" bg="slate-300 dark:slate-900" text="dark:white">
+    <div min-h="screen" bg="dark:slate-900" text="dark:white">
       {/* @ts-ignore: attributify */}
       <nav p="y-4">
         {/* @ts-ignore: attributify */}
