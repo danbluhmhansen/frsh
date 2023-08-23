@@ -44,7 +44,8 @@ export default defineRoute(async ({ url }) => {
       <ul>
         {games.map((game) => (
           <li>
-            <a href={`/games/${game.slug}`}>{game.name}</a>
+            {/* @ts-ignore: attributify */}
+            <a href={`/games/${game.slug}`} underline="~ hover:violet-300 dark:hover:violet-400">{game.name}</a>
           </li>
         ))}
       </ul>

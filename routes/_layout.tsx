@@ -9,10 +9,12 @@ export default defineLayout((_, ctx) => {
         {/* @ts-ignore: attributify */}
         <ul flex="~ col sm:row" items="center" justify="center" gap="4">
           <li>
-            <a href="/">Home</a>
+            {/* @ts-ignore: attributify */}
+            <a href="/" underline="~ hover:violet-300 dark:hover:violet-400">Home</a>
           </li>
           <li>
-            <a href="/games">Games</a>
+            {/* @ts-ignore: attributify */}
+            <a href="/games" underline="~ hover:violet-300 dark:hover:violet-400">Games</a>
           </li>
         </ul>
       </nav>

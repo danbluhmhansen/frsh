@@ -21,16 +21,24 @@ export default defineRoute(async (_, { params: { gameSlug }, renderNotFound }) =
           <ul>
             {actorKinds.map((actorKind) => (
               <li>
-                <a href={`/games/${gameSlug}/actors/${actorKind.slug}`}>{actorKind.name}</a>
+                <a
+                  href={`/games/${gameSlug}/actors/${actorKind.slug}`}
+                  // @ts-ignore: attributify
+                  underline="~ hover:violet-300 dark:hover:violet-400"
+                >
+                  {actorKind.name}
+                </a>
               </li>
             ))}
           </ul>
         </li>
         <li>
-          <a href={`/games/${gameSlug}/skills`}>Skills</a>
+          {/* @ts-ignore: attributify */}
+          <a href={`/games/${gameSlug}/skills`} underline="~ hover:violet-300 dark:hover:violet-400">Skills</a>
         </li>
         <li>
-          <a href={`/games/${gameSlug}/traits`}>Traits</a>
+          {/* @ts-ignore: attributify */}
+          <a href={`/games/${gameSlug}/traits`} underline="~ hover:violet-300 dark:hover:violet-400">Traits</a>
         </li>
       </ul>
     </>

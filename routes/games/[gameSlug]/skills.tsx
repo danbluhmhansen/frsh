@@ -14,7 +14,9 @@ export default defineRoute(async (_, { params: { gameSlug }, renderNotFound }) =
   return (
     <>
       {/* @ts-ignore: attributify */}
-      <a href={`/games/${gameSlug}`} text="3xl" font="bold">{game.name}</a>
+      <a href={`/games/${gameSlug}`} text="3xl" font="bold" underline="~ hover:violet-300 dark:hover:violet-400">
+        {game.name}
+      </a>
       {/* @ts-ignore: attributify */}
       <h2 text="xl">Skills</h2>
       <ul>

@@ -16,11 +16,19 @@ export default defineRoute(async (_, { params: { gameSlug, actorKindSlug }, rend
   return (
     <>
       {/* @ts-ignore: attributify */}
-      <a href={`/games/${gameSlug}`} text="3xl" font="bold">{game.name}</a>
+      <a href={`/games/${gameSlug}`} text="3xl" font="bold" underline="~ hover:violet-300 dark:hover:violet-400">
+        {game.name}
+      </a>
       <ul>
         {actors.map((actor) => (
           <li>
-            <a href={`/games/${gameSlug}/actors/${actorKindSlug}/${actor.slug}`}>{actor.name}</a>
+            <a
+              href={`/games/${gameSlug}/actors/${actorKindSlug}/${actor.slug}`}
+              // @ts-ignore: attributify
+              underline="~ hover:violet-300 dark:hover:violet-400"
+            >
+              {actor.name}
+            </a>
           </li>
         ))}
       </ul>
