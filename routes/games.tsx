@@ -23,10 +23,9 @@ const FIELDS = [
 export const handler: Handlers = {
   async POST(req, { render }) {
     const url = new URL(req.url);
+    const form = await req.formData();
 
     if (url.searchParams.has(PARAM_ADD)) {
-      const form = await req.formData();
-
       const fields = FIELDS.map((field) => ({ ...field, value: form.get(field.name)?.toString() }));
 
       if (fields.some((field) => field.required && !field.value)) return new Response(null, { status: 400 });
@@ -44,8 +43,6 @@ export const handler: Handlers = {
 
       return new Response(null, { status: 303, headers });
     } else {
-      const form = await req.formData();
-
       const slugs = form.getAll("slugs").map((slug) => slug.toString());
       if (slugs.length < 1) return await render();
 
