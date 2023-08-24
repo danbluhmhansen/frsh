@@ -1,5 +1,5 @@
-import { signal } from "@preact/signals";
-import { defineRoute, Handlers } from "$fresh/server.ts";
+import { useSignal } from "@preact/signals";
+import { Handlers } from "$fresh/server.ts";
 import Counter from "~islands/Counter.tsx";
 import { Button } from "~components/Button.tsx";
 
@@ -17,8 +17,8 @@ export const handler: Handlers = {
   },
 };
 
-export default defineRoute(() => {
-  const count = signal(3);
+export default function Page() {
+  const count = useSignal(3);
   return (
     <>
       <img
@@ -41,9 +41,9 @@ export default defineRoute(() => {
       {/* @ts-ignore: attributify */}
       <form method="post" flex="~ col" gap="2">
         {/* @ts-ignore: attributify */}
-        <input type="email" name="email" value="" bg="dark:slate-900" border="~ invalid:red" p="x-2 y-1" rounded />
+        <input type="text" name="email" value="" bg="dark:slate-900" border="~ invalid:red" p="x-2 y-1" rounded />
         <Button type="submit">Subscribe</Button>
       </form>
     </>
   );
-});
+}

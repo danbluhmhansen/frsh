@@ -2,6 +2,7 @@ import { defineConfig } from "$fresh/server.ts";
 import unocssPlugin from "./plugins/unocss.ts";
 import presetUno from "@unocss/preset-uno";
 import presetAttributify from "@unocss/preset-attributify";
+import { presetForms } from "https://esm.sh/@julr/unocss-preset-forms@0.0.5";
 import presetIcons from "@unocss/preset-icons";
 import presetTypography from "@unocss/preset-typography";
 import transformerAttributifyJsx from "@unocss/transformer-attributify-jsx";
@@ -12,6 +13,7 @@ export default defineConfig({
     presets: [
       presetUno({ dark: "media" }),
       presetAttributify(),
+      presetForms(),
       presetTypography(),
       presetIcons({
         collections: {

@@ -1,11 +1,9 @@
 import { JSX } from "preact";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export function Button(props: JSX.HTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...props}
-      disabled={!IS_BROWSER || props.disabled}
       // @ts-ignore: attributify
       bg="transparent hover:violet-500 dark:hover:violet-400"
       border="~ violet-600 dark:violet-300"
