@@ -3,6 +3,7 @@ import { signal } from "@preact/signals";
 import postgres from "postgresjs";
 import { Link } from "~components/Link.tsx";
 import { Button } from "~components/Button.tsx";
+import { Dialog } from "~components/Dialog.tsx";
 
 const PARAM_ADD = "add";
 
@@ -83,7 +84,6 @@ export default defineRoute(async ({ url }) => {
             <div i-tabler-trash h="4" w="4" />
           </Button>
         </div>
-        {/* @ts-ignore: attributify */}
         <table>
           <thead>
             <tr>
@@ -110,40 +110,36 @@ export default defineRoute(async ({ url }) => {
             ))}
           </tbody>
         </table>
-        <dialog
-          open={dialogOpen}
-          // @ts-ignore: attributify
-          bg="slate-100 dark:slate-800"
-          text="dark:white"
-          rounded
-          border
-          min-w="sm"
-          flex="open:~ open:col"
-          gap="4"
-        >
+      </form>
+      {dialogOpen.value && (
+        <Dialog open>
           {/* @ts-ignore: attributify */}
           <h2 text="xl">Add Game</h2>
-          {FIELDS.map((field) => (
-            <input
-              type={field.type}
-              name={field.name}
-              value=""
-              placeholder={field.placeholder}
-              required={field.required}
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
-            />
-          ))}
           {/* @ts-ignore: attributify */}
-          <div flex justify="between">
-            <Button type="submit">Submit</Button>
-            <Link href={dialogCloseLink.pathname + dialogCloseLink.search}>Cancel</Link>
-          </div>
-        </dialog>
-      </form>
+          <form method="post" flex="~ col" justify="center" gap="4">
+            {FIELDS.map((field, i) => (
+              <input
+                type={field.type}
+                name={field.name}
+                value=""
+                placeholder={field.placeholder}
+                required={field.required}
+                autofocus={i === 0}
+                // @ts-ignore: attributify
+                bg="dark:slate-900"
+                border="~ invalid:red"
+                p="x-2 y-1"
+                rounded
+              />
+            ))}
+            {/* @ts-ignore: attributify */}
+            <div flex justify="between">
+              <Button type="submit">Submit</Button>
+              <Link href={dialogCloseLink.pathname + dialogCloseLink.search}>Cancel</Link>
+            </div>
+          </form>
+        </Dialog>
+      )}
     </>
   );
 });

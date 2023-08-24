@@ -1,6 +1,6 @@
 import { defineApp } from "$fresh/server.ts";
 
-export default defineApp((_, ctx) => {
+export default defineApp((_, { Component }) => {
   return (
     <html lang="en">
       <head>
@@ -9,7 +9,7 @@ export default defineApp((_, ctx) => {
         <title>frsh</title>
       </head>
       <body>
-        <ctx.Component />
+        <Component />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 import { defineLayout } from "$fresh/server.ts";
 
-export default defineLayout((_, ctx) => {
+export default defineLayout((_, { Component }) => {
   return (
     // @ts-ignore: attributify
     <div min-h="screen" bg="dark:slate-900" text="dark:white">
@@ -20,7 +20,7 @@ export default defineLayout((_, ctx) => {
       </nav>
       {/* @ts-ignore: attributify */}
       <main container m="x-auto" flex="~ col" items="center" justify="center" gap="4">
-        <ctx.Component />
+        <Component />
       </main>
     </div>
   );
