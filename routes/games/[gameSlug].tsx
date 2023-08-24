@@ -83,11 +83,12 @@ export const handler: Handlers = {
 
       return new Response(null, { status: 303, headers });
     } else {
+      const gameId = form.get("gameId")?.toString();
       const slugs = form.getAll("slugs").map((slug) => slug.toString());
-      if (slugs.length < 1) return await render();
+      if (!gameId || slugs.length < 1) return await render();
 
       const sql = postgres();
-      await sql`DELETE FROM actor_kind WHERE slug IN ${sql(slugs)}`;
+      await sql`DELETE FROM actor_kind WHERE game_id = ${gameId} AND slug IN ${sql(slugs)}`;
 
       return await render();
     }
@@ -131,6 +132,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
       <h1 text="3xl" font="bold">{game.name}</h1>
       {/* @ts-ignore: attributify */}
       <form method="post" flex="~ col" items="center" justify="center" gap="4">
+        <input type="hidden" name="gameId" value={game.id} />
         {/* @ts-ignore: attributify */}
         <div flex="~ row" gap="2">
           <Link href={gameOpenLink.pathname + gameOpenLink.search}>
