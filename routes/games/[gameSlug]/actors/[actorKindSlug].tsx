@@ -1,25 +1,11 @@
 import { defineRoute, Handlers } from "$fresh/server.ts";
-import { signal } from "@preact/signals";
 import postgres from "postgresjs";
 import { Link } from "~components/Link.tsx";
 import { Button } from "~components/Button.tsx";
 import { Dialog } from "~components/Dialog.tsx";
+import { initDialog } from "~utils/utils.ts";
 
 const PARAM_ADD = "add";
-
-const FIELDS = [
-  {
-    type: "text",
-    name: "name",
-    placeholder: "Name",
-    required: true,
-  },
-  {
-    type: "text",
-    name: "description",
-    placeholder: "Description",
-  },
-];
 
 export const handler: Handlers = {
   async POST(req, { params: { gameSlug, actorKindSlug }, render }) {
@@ -27,12 +13,11 @@ export const handler: Handlers = {
     const form = await req.formData();
 
     if (url.searchParams.has(PARAM_ADD)) {
-      const fields = FIELDS.map((field) => ({ ...field, value: form.get(field.name)?.toString() }));
       const kindId = form.get("kindId")?.toString();
-      if (!kindId || fields.some((field) => field.required && !field.value)) return new Response(null, { status: 400 });
+      const name = form.get("name")?.toString();
+      if (!kindId || !name) return new Response(null, { status: 400 });
 
-      const name = fields.find((field) => field.name === "name")?.value ?? null;
-      const description = fields.find((field) => field.name === "description")?.value ?? null;
+      const description = form.get("description")?.toString() ?? null;
 
       const sql = postgres();
       await sql`
@@ -62,13 +47,7 @@ export const handler: Handlers = {
 };
 
 export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }, renderNotFound }) => {
-  const dialogOpenLink = new URL(url);
-  const dialogCloseLink = new URL(url);
-
-  const dialogOpen = signal(dialogOpenLink.searchParams.has(PARAM_ADD));
-
-  dialogOpenLink.searchParams.set(PARAM_ADD, "");
-  dialogCloseLink.searchParams.delete(PARAM_ADD);
+  const [open, close, isOpen] = initDialog(url, PARAM_ADD);
 
   const sql = postgres();
   const [game] = await sql`SELECT name FROM game WHERE slug = ${gameSlug};`;
@@ -97,11 +76,11 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }
         <input type="hidden" name="kindId" value={actorKind.id} />
         {/* @ts-ignore: attributify */}
         <div flex="~ row" gap="2">
-          <Link href={dialogOpenLink.pathname + dialogOpenLink.search}>
+          <Link href={open}>
             {/* @ts-ignore: attributify */}
             <div i-tabler-plus h="4" w="4" />
           </Link>
-          <Button type="submit" formNoValidate>
+          <Button type="submit">
             {/* @ts-ignore: attributify */}
             <div i-tabler-trash h="4" w="4" />
           </Button>
@@ -138,32 +117,41 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }
           </tbody>
         </table>
       </form>
-      {dialogOpen.value && (
+      {isOpen && (
         <Dialog open>
           {/* @ts-ignore: attributify */}
           <h2 text="xl">Add {actorKind.name}</h2>
           {/* @ts-ignore: attributify */}
           <form method="post" flex="~ col" gap="2">
             <input type="hidden" name="kindId" value={actorKind.id} />
-            {FIELDS.map((field, i) => (
-              <input
-                type={field.type}
-                name={field.name}
-                value=""
-                placeholder={field.placeholder}
-                required={field.required}
-                autofocus={i === 0}
-                // @ts-ignore: attributify
-                bg="dark:slate-900"
-                border="~ invalid:red"
-                p="x-2 y-1"
-                rounded
-              />
-            ))}
+            <input
+              type="text"
+              name="name"
+              value=""
+              placeholder="Name"
+              required
+              autofocus
+              // @ts-ignore: attributify
+              bg="dark:slate-900"
+              border="~ invalid:red"
+              p="x-2 y-1"
+              rounded
+            />
+            <input
+              type="text"
+              name="description"
+              value=""
+              placeholder="Description"
+              // @ts-ignore: attributify
+              bg="dark:slate-900"
+              border="~ invalid:red"
+              p="x-2 y-1"
+              rounded
+            />
             {/* @ts-ignore: attributify */}
             <div flex justify="between">
               <Button type="submit">Submit</Button>
-              <Link href={dialogCloseLink.pathname + dialogCloseLink.search}>Cancel</Link>
+              <Link href={close}>Cancel</Link>
             </div>
           </form>
         </Dialog>
