@@ -9,10 +9,10 @@ const PARAM_ADD = "add";
 
 export const handler: Handlers = {
   async POST(req, { render }) {
-    const url = new URL(req.url);
     const form = await req.formData();
+    const submit = form.get("submit");
 
-    if (url.searchParams.has(PARAM_ADD)) {
+    if (submit === PARAM_ADD) {
       const name = form.get("name")?.toString();
       if (!name) return new Response(null, { status: 400 });
 
@@ -21,13 +21,16 @@ export const handler: Handlers = {
       const sql = postgres();
       await sql`INSERT INTO game (name, description) VALUES (${name}, ${description});`;
 
+      const url = new URL(req.url);
       url.searchParams.delete(PARAM_ADD);
 
       const headers = new Headers();
       headers.set("location", url.pathname + url.search);
 
       return new Response(null, { status: 303, headers });
-    } else {
+    }
+
+    if (submit === "remove") {
       const slugs = form.getAll("slugs").map((slug) => slug.toString());
       if (slugs.length < 1) return await render();
 
@@ -36,6 +39,8 @@ export const handler: Handlers = {
 
       return await render();
     }
+
+    return await render();
   },
 };
 
@@ -57,7 +62,7 @@ export default defineRoute(async ({ url }) => {
             {/* @ts-ignore: attributify */}
             <div i-tabler-plus h="4" w="4" />
           </Link>
-          <Button type="submit">
+          <Button type="submit" name="submit" value="remove">
             {/* @ts-ignore: attributify */}
             <div i-tabler-trash h="4" w="4" />
           </Button>
@@ -98,7 +103,6 @@ export default defineRoute(async ({ url }) => {
             <input
               type="text"
               name="name"
-              value=""
               placeholder="Name"
               required
               autofocus
@@ -108,10 +112,8 @@ export default defineRoute(async ({ url }) => {
               p="x-2 y-1"
               rounded
             />
-            <input
-              type="text"
+            <textarea
               name="description"
-              value=""
               placeholder="Description"
               // @ts-ignore: attributify
               bg="dark:slate-900"
@@ -121,8 +123,14 @@ export default defineRoute(async ({ url }) => {
             />
             {/* @ts-ignore: attributify */}
             <div flex justify="between">
-              <Button type="submit">Submit</Button>
-              <Link href={close}>Cancel</Link>
+              <Button type="submit" name="submit" value={PARAM_ADD}>
+                {/* @ts-ignore: attributify */}
+                <div i-tabler-check h="4" w="4" />
+              </Button>
+              <Link href={close}>
+                {/* @ts-ignore: attributify */}
+                <div i-tabler-x h="4" w="4" />
+              </Link>
             </div>
           </form>
         </Dialog>

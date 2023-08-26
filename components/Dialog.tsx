@@ -9,7 +9,7 @@ export function Dialog(props: JSX.HTMLAttributes<HTMLDialogElement>) {
       text="dark:white"
       rounded
       border
-      min-w="sm"
+      min-w="sm:sm"
       flex="open:~ open:col"
       gap="4"
     />

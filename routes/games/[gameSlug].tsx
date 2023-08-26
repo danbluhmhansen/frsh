@@ -10,10 +10,10 @@ const PARAM_EDIT = "edit";
 
 export const handler: Handlers = {
   async POST(req, { render }) {
-    const url = new URL(req.url);
     const form = await req.formData();
+    const submit = form.get("submit");
 
-    if (url.searchParams.has(PARAM_EDIT)) {
+    if (submit === PARAM_EDIT) {
       const id = form.get("id")?.toString();
       const name = form.get("name")?.toString();
       if (!id || !name) return new Response(null, { status: 400 });
@@ -28,13 +28,16 @@ export const handler: Handlers = {
         RETURNING slug;
       `;
 
+      const url = new URL(req.url);
       url.searchParams.delete(PARAM_EDIT);
 
       const headers = new Headers();
       headers.set("location", `/games/${game.slug}${url.search}`);
 
       return new Response(null, { status: 303, headers });
-    } else if (url.searchParams.has(PARAM_ADD)) {
+    }
+
+    if (submit === PARAM_ADD) {
       const gameId = form.get("gameId")?.toString();
       const name = form.get("name")?.toString();
       if (!gameId || !name) return new Response(null, { status: 400 });
@@ -44,13 +47,16 @@ export const handler: Handlers = {
       const sql = postgres();
       await sql`INSERT INTO actor_kind (game_id, name, description) VALUES (${gameId}, ${name}, ${description});`;
 
+      const url = new URL(req.url);
       url.searchParams.delete(PARAM_ADD);
 
       const headers = new Headers();
       headers.set("location", url.pathname + url.search);
 
       return new Response(null, { status: 303, headers });
-    } else {
+    }
+
+    if (submit === "remove") {
       const gameId = form.get("gameId")?.toString();
       const slugs = form.getAll("slugs").map((slug) => slug.toString());
       if (!gameId || slugs.length < 1) return await render();
@@ -60,6 +66,8 @@ export const handler: Handlers = {
 
       return await render();
     }
+
+    return await render();
   },
 };
 
@@ -104,7 +112,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
                 {/* @ts-ignore: attributify */}
                 <div i-tabler-plus h="4" w="4" />
               </Link>
-              <Button type="submit">
+              <Button type="submit" name="submit" value="remove">
                 {/* @ts-ignore: attributify */}
                 <div i-tabler-trash h="4" w="4" />
               </Button>
@@ -177,8 +185,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
               p="x-2 y-1"
               rounded
             />
-            <input
-              type="text"
+            <textarea
               name="description"
               value={game.description}
               placeholder="Description"
@@ -190,8 +197,14 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
             />
             {/* @ts-ignore: attributify */}
             <div flex justify="between">
-              <Button type="submit">Submit</Button>
-              <Link href={gameClose}>Cancel</Link>
+              <Button type="submit" name="submit" value={PARAM_EDIT}>
+                {/* @ts-ignore: attributify */}
+                <div i-tabler-check h="4" w="4" />
+              </Button>
+              <Link href={gameClose}>
+                {/* @ts-ignore: attributify */}
+                <div i-tabler-x h="4" w="4" />
+              </Link>
             </div>
           </form>
         </Dialog>
@@ -215,8 +228,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
               p="x-2 y-1"
               rounded
             />
-            <input
-              type="text"
+            <textarea
               name="description"
               placeholder="Description"
               // @ts-ignore: attributify
@@ -227,8 +239,14 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
             />
             {/* @ts-ignore: attributify */}
             <div flex justify="between">
-              <Button type="submit">Submit</Button>
-              <Link href={actorClose}>Cancel</Link>
+              <Button type="submit" name="submit" value={PARAM_ADD}>
+                {/* @ts-ignore: attributify */}
+                <div i-tabler-check h="4" w="4" />
+              </Button>
+              <Link href={actorClose}>
+                {/* @ts-ignore: attributify */}
+                <div i-tabler-x h="4" w="4" />
+              </Link>
             </div>
           </form>
         </Dialog>
