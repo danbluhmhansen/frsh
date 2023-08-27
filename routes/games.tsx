@@ -62,7 +62,7 @@ export default defineRoute(async ({ url }) => {
             {/* @ts-ignore: attributify */}
             <div i-tabler-plus h="4" w="4" />
           </Link>
-          <Button type="submit" name="submit" value="remove">
+          <Button type="submit" name="submit" value="remove" color="red">
             {/* @ts-ignore: attributify */}
             <div i-tabler-trash h="4" w="4" />
           </Button>
