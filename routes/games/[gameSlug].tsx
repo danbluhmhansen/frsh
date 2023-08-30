@@ -148,7 +148,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
         </ul>
       </form>
       {gameIsOpen && (
-        <Dialog open>
+        <Dialog open close={gameClose}>
           <h2 class="text-xl">Edit Game</h2>
           <form method="post" class="flex flex-col justify-center gap-4">
             <input type="hidden" name="id" value={game.id} />
@@ -179,7 +179,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
         </Dialog>
       )}
       {actorIsOpen && (
-        <Dialog open>
+        <Dialog open close={actorClose}>
           <h2 class="text-xl">Add Actor Kind</h2>
           <form method="post" class="flex flex-col justify-center gap-4">
             <input type="hidden" name="gameId" value={game.id} />

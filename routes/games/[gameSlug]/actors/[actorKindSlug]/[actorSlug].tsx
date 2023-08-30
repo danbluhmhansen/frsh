@@ -180,7 +180,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
         </table>
       </form>
       {isGearOpen && (
-        <Dialog open>
+        <Dialog open close={closeGear}>
           <h2 class="text-xl">Add Gear</h2>
           <form method="post" class="flex flex-col justify-center gap-4">
             <table>
@@ -229,7 +229,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
         </Dialog>
       )}
       {isTraitsOpen && (
-        <Dialog open>
+        <Dialog open close={closeTraits}>
           <h2 class="text-xl">Add Trait</h2>
           <form method="post" class="flex flex-col justify-center gap-4">
             <table>

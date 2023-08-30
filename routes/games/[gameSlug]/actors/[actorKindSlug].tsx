@@ -112,7 +112,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }
         </table>
       </form>
       {isOpen && (
-        <Dialog open>
+        <Dialog open close={close}>
           <h2 class="text-xl">Add {actorKind.name}</h2>
           <form method="post" class="flex flex-col gap-2">
             <input type="hidden" name="kindId" value={actorKind.id} />

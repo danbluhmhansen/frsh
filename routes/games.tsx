@@ -84,7 +84,7 @@ export default defineRoute(async ({ url }) => {
         </table>
       </form>
       {isOpen && (
-        <Dialog open>
+        <Dialog open close={close}>
           <h2 class="text-xl">Add Game</h2>
           <form method="post" class="flex flex-col justify-center gap-4">
             <input

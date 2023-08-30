@@ -1,6 +1,10 @@
 import { JSX } from "preact";
 
-export function Dialog(props: JSX.HTMLAttributes<HTMLDialogElement>) {
+interface DialogProps extends JSX.HTMLAttributes<HTMLDialogElement> {
+  close?: string | JSX.SignalLike<string | undefined> | undefined;
+}
+
+export function Dialog(props: DialogProps) {
   return (
     <>
       <dialog
@@ -18,7 +22,7 @@ export function Dialog(props: JSX.HTMLAttributes<HTMLDialogElement>) {
           z-1
         "
       />
-      <div class="bg-black/50 fixed inset-0" />
+      <a href={props.close} class="bg-black/50 fixed inset-0" />
     </>
   );
 }
