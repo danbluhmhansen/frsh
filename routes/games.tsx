@@ -87,7 +87,7 @@ export default defineRoute(async ({ url }) => {
                 {/* @ts-ignore: attributify */}
                 <td p="2" border="~ slate-300 dark:slate-600">
                   {/* @ts-ignore: attributify */}
-                  <a href={`/games/${game.slug}`} underline="~ hover:violet-300 dark:hover:violet-400">{game.name}</a>
+                  <a href={`/games/${game.slug}`} text="hover:violet">{game.name}</a>
                 </td>
               </tr>
             ))}

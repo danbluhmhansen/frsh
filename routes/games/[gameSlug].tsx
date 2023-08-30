@@ -145,7 +145,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
                       <a
                         href={`/games/${gameSlug}/actors/${actorKind.slug}`}
                         // @ts-ignore: attributify
-                        underline="~ hover:violet-300 dark:hover:violet-400"
+                        text="hover:violet"
                       >
                         {actorKind.name}
                       </a>
@@ -157,11 +157,11 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
           </li>
           <li>
             {/* @ts-ignore: attributify */}
-            <a href={`/games/${gameSlug}/skills`} underline="~ hover:violet-300 dark:hover:violet-400">Skills</a>
+            <a href={`/games/${gameSlug}/skills`} text="hover:violet">Skills</a>
           </li>
           <li>
             {/* @ts-ignore: attributify */}
-            <a href={`/games/${gameSlug}/traits`} underline="~ hover:violet-300 dark:hover:violet-400">Traits</a>
+            <a href={`/games/${gameSlug}/traits`} text="hover:violet">Traits</a>
           </li>
         </ul>
       </form>

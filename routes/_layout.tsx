@@ -10,11 +10,11 @@ export default defineLayout((_, { Component }) => {
         <ul flex="~ col sm:row" items="center" justify="center" gap="4">
           <li>
             {/* @ts-ignore: attributify */}
-            <a href="/" underline="~ hover:violet-300 dark:hover:violet-400">Home</a>
+            <a href="/" text="hover:violet">Home</a>
           </li>
           <li>
             {/* @ts-ignore: attributify */}
-            <a href="/games" underline="~ hover:violet-300 dark:hover:violet-400">Games</a>
+            <a href="/games" text="hover:violet">Games</a>
           </li>
         </ul>
       </nav>

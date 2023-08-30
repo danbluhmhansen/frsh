@@ -73,7 +73,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
       <ol flex="~ row">
         <li>
           {/* @ts-ignore: attributify */}
-          <a href={`/games/${gameSlug}`} underline="~ hover:violet-300 dark:hover:violet-400">{game.name}</a>
+          <a href={`/games/${gameSlug}`} text="hover:violet">{game.name}</a>
         </li>
         {/* @ts-ignore: attributify */}
         <li flex="~ row" justify="center" items="center">
@@ -81,7 +81,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
         </li>
         <li>
           {/* @ts-ignore: attributify */}
-          <a href={`/games/${gameSlug}/actors/${actorKindSlug}`} underline="~ hover:violet-300 dark:hover:violet-400">
+          <a href={`/games/${gameSlug}/actors/${actorKindSlug}`} text="hover:violet">
             {actorKind.name}
           </a>
         </li>
