@@ -35,7 +35,7 @@ export const handler: Handlers = {
 
       return new Response(null, { status: 303, headers });
     }
-    
+
     if (submit === "remove") {
       const kindId = form.get("kindId")?.toString();
       const slugs = form.getAll("slugs").map((slug) => slug.toString());
@@ -72,47 +72,36 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }
 
   return (
     <>
-      {/* @ts-ignore: attributify */}
-      <a href={`/games/${gameSlug}`} text="3xl hover:violet" font="bold">
+      <a href={`/games/${gameSlug}`} class="text-3xl hover:text-violet font-bold">
         {game.name}
       </a>
-      {/* @ts-ignore: attributify */}
-      <form method="post" flex="~ col" items="center" justify="center" gap="4">
+      <form method="post" class="flex flex-col items-center justify-center gap-4">
         <input type="hidden" name="kindId" value={actorKind.id} />
-        {/* @ts-ignore: attributify */}
-        <div flex="~ row" gap="2">
+        <div class="flex flex-row gap-2">
           <Link href={open}>
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-plus h="4" w="4" />
+            <div class="i-tabler-plus h-4 w-4" />
           </Link>
           <Button type="submit" name="submit" value="remove">
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-trash h="4" w="4" />
+            <div class="i-tabler-trash h-4 w-4" />
           </Button>
         </div>
         <table>
           <thead>
             <tr>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600"></th>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600">Name</th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600"></th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600">Name</th>
             </tr>
           </thead>
           <tbody>
             {actors.map((actor) => (
               <tr>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">
-                  {/* @ts-ignore: attributify */}
-                  <input type="checkbox" name="slugs" value={actor.slug} bg="dark:slate-900" border="dark:white" />
+                <td class="p-2 border border-slate-300 dark:border-slate-600">
+                  <input type="checkbox" name="slugs" value={actor.slug} class="dark:bg-slate-900 dark:border-white" />
                 </td>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">
+                <td class="p-2 border border-slate-300 dark:border-slate-600">
                   <a
                     href={`/games/${gameSlug}/actors/${actorKindSlug}/${actor.slug}`}
-                    // @ts-ignore: attributify
-                    text="hover:violet"
+                    class="hover:text-violet"
                   >
                     {actor.name}
                   </a>
@@ -124,10 +113,8 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }
       </form>
       {isOpen && (
         <Dialog open>
-          {/* @ts-ignore: attributify */}
-          <h2 text="xl">Add {actorKind.name}</h2>
-          {/* @ts-ignore: attributify */}
-          <form method="post" flex="~ col" gap="2">
+          <h2 class="text-xl">Add {actorKind.name}</h2>
+          <form method="post" class="flex flex-col gap-2">
             <input type="hidden" name="kindId" value={actorKind.id} />
             <input
               type="text"
@@ -135,23 +122,14 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug }
               placeholder="Name"
               required
               autofocus
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
+              class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
             />
             <textarea
               name="description"
               placeholder="Description"
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
+              class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
             />
-            {/* @ts-ignore: attributify */}
-            <div flex justify="between">
+            <div class="flex justify-between">
               <Button type="submit" name="submit" value={PARAM_ADD}>Submit</Button>
               <Link href={close}>Cancel</Link>
             </div>

@@ -13,12 +13,10 @@ export default defineRoute(async (_, { params: { gameSlug }, renderNotFound }) =
   `;
   return (
     <>
-      {/* @ts-ignore: attributify */}
-      <a href={`/games/${gameSlug}`} text="3xl hover:violet" font="bold">
+      <a href={`/games/${gameSlug}`} class="text-3xl hover:text-violet font-bold">
         {game.name}
       </a>
-      {/* @ts-ignore: attributify */}
-      <h1 text="xl">Traits</h1>
+      <h1 class="text-xl">Traits</h1>
       <ul>
         {traits.map((trait) => <li>{trait.name}</li>)}
       </ul>

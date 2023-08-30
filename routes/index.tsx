@@ -26,22 +26,21 @@ export default function Page() {
         width="128"
         height="128"
         alt="the Fresh logo: a sliced lemon dripping with juice"
-        // @ts-ignore: attributify
-        m="y-6"
+        class="my-6"
       />
-      {/* @ts-ignore: attributify */}
-      <h1 text="3xl" font="bold">Welcome to Fresh</h1>
-      {/* @ts-ignore: attributify */}
-      <p m="y-4">
+      <h1 class="text-3xl font-bold">Welcome to Fresh</h1>
+      <p class="my-4">
         Try updating this message in the
-        {/* @ts-ignore: attributify */}
-        <code m="x-2">./routes/index.tsx</code> file, and refresh.
+        <code class="mx-2">./routes/index.tsx</code> file, and refresh.
       </p>
       <Counter count={count} />
-      {/* @ts-ignore: attributify */}
-      <form method="post" flex="~ col" gap="2">
-        {/* @ts-ignore: attributify */}
-        <input type="text" name="email" value="" bg="dark:slate-900" border="~ invalid:red" p="x-2 y-1" rounded />
+      <form method="post" class="flex flex-col gap-2">
+        <input
+          type="text"
+          name="email"
+          value=""
+          class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
+        />
         <Button type="submit">Subscribe</Button>
       </form>
     </>

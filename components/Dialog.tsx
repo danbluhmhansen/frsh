@@ -5,20 +5,20 @@ export function Dialog(props: JSX.HTMLAttributes<HTMLDialogElement>) {
     <>
       <dialog
         {...props}
-        // @ts-ignore: attributify
-        bg="dark:slate-900"
-        text="dark:white"
-        rounded
-        border
-        min-w="sm:sm"
-        flex="open:~ open:col"
-        gap="4"
-        position="fixed"
-        inset="0"
-        z="1"
+        class="
+          dark:bg-slate-900
+          dark:text-white
+          rounded
+          border
+          sm:min-w-sm
+          open:flex open:flex-col
+          gap-4
+          fixed
+          inset-0
+          z-1
+        "
       />
-      {/* @ts-ignore: attributify */}
-      <div bg="black/50" position="fixed" inset="0" />
+      <div class="bg-black/50 fixed inset-0" />
     </>
   );
 }

@@ -12,11 +12,9 @@ export default defineRoute(() => {
         width="128"
         height="128"
         alt="the Fresh logo: a sliced lemon dripping with juice"
-        // @ts-ignore: attributify
-        m="y-6"
+        class="my-6"
       />
-      {/* @ts-ignore: attributify */}
-      <h1 text="3xl" font="bold">500 - Internal server error</h1>
+      <h1 class="text-3xl font-bold">500 - Internal server error</h1>
     </>
   );
 });

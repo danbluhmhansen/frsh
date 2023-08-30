@@ -69,77 +69,60 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
 
   return (
     <>
-      {/* @ts-ignore: attributify */}
-      <ol flex="~ row">
+      <ol class="flex flex-row">
         <li>
-          {/* @ts-ignore: attributify */}
-          <a href={`/games/${gameSlug}`} text="hover:violet">{game.name}</a>
+          <a href={`/games/${gameSlug}`} class="hover:text-violet">{game.name}</a>
         </li>
-        {/* @ts-ignore: attributify */}
-        <li flex="~ row" justify="center" items="center">
-          <div i-tabler-chevron-right />
+        <li class="flex flex-row justify-center items-center">
+          <div class="i-tabler-chevron-right" />
         </li>
         <li>
-          {/* @ts-ignore: attributify */}
-          <a href={`/games/${gameSlug}/actors/${actorKindSlug}`} text="hover:violet">
+          <a href={`/games/${gameSlug}/actors/${actorKindSlug}`} class="hover:text-violet">
             {actorKind.name}
           </a>
         </li>
       </ol>
-      {/* @ts-ignore: attributify */}
-      <h1 text="3xl" font="bold">{actor.name}</h1>
+      <h1 class="text-3xl font-bold">{actor.name}</h1>
       <table>
         <thead>
           <tr>
-            {/* @ts-ignore: attributify */}
-            {skills.map((skill) => <th p="2" border="~ slate-300 dark:slate-600">{skill.name}</th>)}
+            {skills.map((skill) => <th class="p-2 border border-slate-300 dark:border-slate-600">{skill.name}</th>)}
           </tr>
         </thead>
         <tbody>
           <tr>
-            {/* @ts-ignore: attributify */}
-            {skills.map((skill) => <td p="2" border="~ slate-300 dark:slate-600" text="center">{skill.value}</td>)}
+            {skills.map((skill) => (
+              <td class="p-2 border border-slate-300 dark:border-slate-600 text-center">{skill.value}</td>
+            ))}
           </tr>
         </tbody>
       </table>
-      {/* @ts-ignore: attributify */}
-      <h2 text="xl" font="bold">Gear</h2>
-      {/* @ts-ignore: attributify */}
-      <form method="post" flex="~ col" items="center" justify="center" gap="4">
-        {/* @ts-ignore: attributify */}
-        <div flex="~ row" gap="2">
+      <h2 class="text-xl font-bold">Gear</h2>
+      <form method="post" class="flex flex-col items-center justify-center gap-4">
+        <div class="flex flex-row gap-2">
           <Link href={openGear}>
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-plus h="4" w="4" />
+            <div class="i-tabler-plus h-4 w-4" />
           </Link>
           <Button type="submit" name="submit" value="removeGear">
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-trash h="4" w="4" />
+            <div class="i-tabler-trash h-4 w-4" />
           </Button>
         </div>
         <table>
           <thead>
             <tr>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600"></th>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600">Name</th>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600">Amount</th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600"></th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600">Name</th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600">Amount</th>
             </tr>
           </thead>
           <tbody>
             {actorGear.map((gear) => (
               <tr>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">
-                  {/* @ts-ignore: attributify */}
-                  <input type="checkbox" name="slugs" value={gear.slug} bg="dark:slate-900" border="dark:white" />
+                <td class="p-2 border border-slate-300 dark:border-slate-600">
+                  <input type="checkbox" name="slugs" value={gear.slug} class="dark:bg-slate-900 dark:border-white" />
                 </td>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">{gear.name}</td>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">
+                <td class="p-2 border border-slate-300 dark:border-slate-600">{gear.name}</td>
+                <td class="p-2 border border-slate-300 dark:border-slate-600">
                   <input
                     type="number"
                     step={1}
@@ -147,9 +130,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
                     pattern="\d+"
                     name={gear.slug}
                     value={gear.amount}
-                    // @ts-ignore: attributify
-                    bg="dark:slate-900"
-                    border="none"
+                    class="dark:bg-slate-900 border-none"
                   />
                 </td>
               </tr>
@@ -157,44 +138,32 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
           </tbody>
         </table>
       </form>
-      {/* @ts-ignore: attributify */}
-      <h2 text="xl" font="bold">Traits</h2>
-      {/* @ts-ignore: attributify */}
-      <form method="post" flex="~ col" items="center" justify="center" gap="4">
-        {/* @ts-ignore: attributify */}
-        <div flex="~ row" gap="2">
+      <h2 class="text-xl font-bold">Traits</h2>
+      <form method="post" class="flex flex-col items-center justify-center gap-4">
+        <div class="flex flex-row gap-2">
           <Link href={openTraits}>
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-plus h="4" w="4" />
+            <div class="i-tabler-plus h-4 w-4" />
           </Link>
           <Button type="submit">
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-trash h="4" w="4" />
+            <div class="i-tabler-trash h-4 w-4" />
           </Button>
         </div>
         <table>
           <thead>
             <tr>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600"></th>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600">Name</th>
-              {/* @ts-ignore: attributify */}
-              <th p="2" border="~ slate-300 dark:slate-600">Amount</th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600"></th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600">Name</th>
+              <th class="p-2 border border-slate-300 dark:border-slate-600">Amount</th>
             </tr>
           </thead>
           <tbody>
             {actorTraits.map((trait) => (
               <tr>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">
-                  {/* @ts-ignore: attributify */}
-                  <input type="checkbox" name="slugs" value={trait.slug} bg="dark:slate-900" border="dark:white" />
+                <td class="p-2 border border-slate-300 dark:border-slate-600">
+                  <input type="checkbox" name="slugs" value={trait.slug} class="dark:bg-slate-900 dark:border-white" />
                 </td>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">{trait.name}</td>
-                {/* @ts-ignore: attributify */}
-                <td p="2" border="~ slate-300 dark:slate-600">
+                <td class="p-2 border border-slate-300 dark:border-slate-600">{trait.name}</td>
+                <td class="p-2 border border-slate-300 dark:border-slate-600">
                   <input
                     type="number"
                     step={1}
@@ -202,9 +171,7 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
                     pattern="\d+"
                     name={trait.slug}
                     value={trait.amount}
-                    // @ts-ignore: attributify
-                    bg="dark:slate-900"
-                    border="none"
+                    class="dark:bg-slate-900 border-none"
                   />
                 </td>
               </tr>
@@ -214,57 +181,48 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
       </form>
       {isGearOpen && (
         <Dialog open>
-          {/* @ts-ignore: attributify */}
-          <h2 text="xl">Add Gear</h2>
-          {/* @ts-ignore: attributify */}
-          <form method="post" flex="~ col" justify="center" gap="4">
+          <h2 class="text-xl">Add Gear</h2>
+          <form method="post" class="flex flex-col justify-center gap-4">
             <table>
               <thead>
                 <tr>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600"></th>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600">Name</th>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600">Amount</th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600"></th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600">Name</th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600">Amount</th>
                 </tr>
               </thead>
               <tbody>
                 {gears.map((gear) => (
                   <tr>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">
-                      {/* @ts-ignore: attributify */}
-                      <input type="checkbox" name="slugs" value={gear.slug} bg="dark:slate-900" border="dark:white" />
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">
+                      <input
+                        type="checkbox"
+                        name="slugs"
+                        value={gear.slug}
+                        class="dark:bg-slate-900 dark:border-white"
+                      />
                     </td>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">{gear.name}</td>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">{gear.name}</td>
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">
                       <input
                         type="number"
                         step={1}
                         min={1}
                         pattern="\d+"
                         name={gear.slug}
-                        // @ts-ignore: attributify
-                        bg="dark:slate-800"
-                        border="none"
+                        class="dark:bg-slate-800 border-none"
                       />
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            {/* @ts-ignore: attributify */}
-            <div flex justify="between">
+            <div class="flex justify-between">
               <Button type="submit" name="submit" value={PARAM_GEAR}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-check h="4" w="4" />
+                <div class="i-tabler-check h-4 w-4" />
               </Button>
               <Link href={closeGear}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-x h="4" w="4" />
+                <div class="i-tabler-x h-4 w-4" />
               </Link>
             </div>
           </form>
@@ -272,57 +230,48 @@ export default defineRoute(async ({ url }, { params: { gameSlug, actorKindSlug, 
       )}
       {isTraitsOpen && (
         <Dialog open>
-          {/* @ts-ignore: attributify */}
-          <h2 text="xl">Add Trait</h2>
-          {/* @ts-ignore: attributify */}
-          <form method="post" flex="~ col" justify="center" gap="4">
+          <h2 class="text-xl">Add Trait</h2>
+          <form method="post" class="flex flex-col justify-center gap-4">
             <table>
               <thead>
                 <tr>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600"></th>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600">Name</th>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600">Amount</th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600"></th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600">Name</th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600">Amount</th>
                 </tr>
               </thead>
               <tbody>
                 {traits.map((trait) => (
                   <tr>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">
-                      {/* @ts-ignore: attributify */}
-                      <input type="checkbox" name="slugs" value={trait.slug} bg="dark:slate-900" border="dark:white" />
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">
+                      <input
+                        type="checkbox"
+                        name="slugs"
+                        value={trait.slug}
+                        class="dark:bg-slate-900 dark:border-white"
+                      />
                     </td>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">{trait.name}</td>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">{trait.name}</td>
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">
                       <input
                         type="number"
                         step={1}
                         min={1}
                         pattern="\d+"
                         name={trait.slug}
-                        // @ts-ignore: attributify
-                        bg="dark:slate-800"
-                        border="none"
+                        class="dark:bg-slate-800 border-none"
                       />
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            {/* @ts-ignore: attributify */}
-            <div flex justify="between">
+            <div class="flex justify-between">
               <Button type="submit" name="submit" value={PARAM_TRAITS}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-check h="4" w="4" />
+                <div class="i-tabler-check h-4 w-4" />
               </Button>
               <Link href={closeTraits}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-x h="4" w="4" />
+                <div class="i-tabler-x h-4 w-4" />
               </Link>
             </div>
           </form>

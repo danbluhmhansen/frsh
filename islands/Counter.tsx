@@ -7,11 +7,9 @@ interface CounterProps {
 
 export default function Counter(props: CounterProps) {
   return (
-    // @ts-ignore: attributify
-    <div flex="~ row" gap="8" p="y-6">
+    <div class="flex flex-row gap-8 py-6">
       <Button onClick={() => props.count.value -= 1}>-1</Button>
-      {/* @ts-ignore: attributify */}
-      <p text="3xl">{props.count}</p>
+      <p class="text-3xl">{props.count}</p>
       <Button onClick={() => props.count.value += 1}>+1</Button>
     </div>
   );

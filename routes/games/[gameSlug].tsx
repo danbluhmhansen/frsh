@@ -89,63 +89,47 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
 
   return (
     <>
-      {/* @ts-ignore: attributify */}
-      <h1 text="3xl" font="bold">{game.name}</h1>
-      {/* @ts-ignore: attributify */}
-      <form method="post" flex="~ col" items="center" justify="center" gap="4">
+      <h1 class="text-3xl font-bold">{game.name}</h1>
+      <form method="post" class="flex flex-col items-center justify-center gap-4">
         <input type="hidden" name="gameId" value={game.id} />
-        {/* @ts-ignore: attributify */}
-        <div flex="~ row" gap="2">
+        <div class="flex flex-row gap-2">
           <Link href={gameOpen}>
-            {/* @ts-ignore: attributify */}
-            <div i-tabler-pencil h="4" w="4" />
+            <div class="i-tabler-pencil h-4 w-4" />
           </Link>
         </div>
-        {/* @ts-ignore: attributify */}
-        <ul flex="~ row" gap="4">
-          {/* @ts-ignore: attributify */}
-          <li flex="~ col" gap="2">
+        <ul class="flex flex-row gap-4">
+          <li class="flex flex-col gap-2">
             <h2>Actors</h2>
-            {/* @ts-ignore: attributify */}
-            <div flex="~ row" gap="2">
+            <div class="flex flex-row gap-2">
               <Link href={actorOpen}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-plus h="4" w="4" />
+                <div class="i-tabler-plus h-4 w-4" />
               </Link>
-              <Button type="submit" name="submit" value="remove" color="red">
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-trash h="4" w="4" />
+              <Button type="submit" name="submit" value="remove">
+                <div class="i-tabler-trash h-4 w-4" />
               </Button>
             </div>
             <table>
               <thead>
                 <tr>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600"></th>
-                  {/* @ts-ignore: attributify */}
-                  <th p="2" border="~ slate-300 dark:slate-600">Name</th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600"></th>
+                  <th class="p-2 border border-slate-300 dark:border-slate-600">Name</th>
                 </tr>
               </thead>
               <tbody>
                 {actorKinds.map((actorKind) => (
                   <tr>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">
                       <input
                         type="checkbox"
                         name="slugs"
                         value={actorKind.slug}
-                        // @ts-ignore: attributify
-                        bg="dark:slate-900"
-                        border="dark:white"
+                        class="dark:bg-slate-900 dark:border-white"
                       />
                     </td>
-                    {/* @ts-ignore: attributify */}
-                    <td p="2" border="~ slate-300 dark:slate-600">
+                    <td class="p-2 border border-slate-300 dark:border-slate-600">
                       <a
                         href={`/games/${gameSlug}/actors/${actorKind.slug}`}
-                        // @ts-ignore: attributify
-                        text="hover:violet"
+                        class="hover:text-violet"
                       >
                         {actorKind.name}
                       </a>
@@ -156,21 +140,17 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
             </table>
           </li>
           <li>
-            {/* @ts-ignore: attributify */}
-            <a href={`/games/${gameSlug}/skills`} text="hover:violet">Skills</a>
+            <a href={`/games/${gameSlug}/skills`} class="hover:text-violet">Skills</a>
           </li>
           <li>
-            {/* @ts-ignore: attributify */}
-            <a href={`/games/${gameSlug}/traits`} text="hover:violet">Traits</a>
+            <a href={`/games/${gameSlug}/traits`} class="hover:text-violet">Traits</a>
           </li>
         </ul>
       </form>
       {gameIsOpen && (
         <Dialog open>
-          {/* @ts-ignore: attributify */}
-          <h2 text="xl">Edit Game</h2>
-          {/* @ts-ignore: attributify */}
-          <form method="post" flex="~ col" justify="center" gap="4">
+          <h2 class="text-xl">Edit Game</h2>
+          <form method="post" class="flex flex-col justify-center gap-4">
             <input type="hidden" name="id" value={game.id} />
             <input
               type="text"
@@ -179,31 +159,20 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
               placeholder="Name"
               required
               autofocus
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
+              class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
             />
             <textarea
               name="description"
               value={game.description}
               placeholder="Description"
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
+              class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
             />
-            {/* @ts-ignore: attributify */}
-            <div flex justify="between">
+            <div class="flex justify-between">
               <Button type="submit" name="submit" value={PARAM_EDIT}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-check h="4" w="4" />
+                <div class="i-tabler-check h-4 w-4" />
               </Button>
               <Link href={gameClose}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-x h="4" w="4" />
+                <div class="i-tabler-x h-4 w-4" />
               </Link>
             </div>
           </form>
@@ -211,10 +180,8 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
       )}
       {actorIsOpen && (
         <Dialog open>
-          {/* @ts-ignore: attributify */}
-          <h2 text="xl">Add Actor Kind</h2>
-          {/* @ts-ignore: attributify */}
-          <form method="post" flex="~ col" justify="center" gap="4">
+          <h2 class="text-xl">Add Actor Kind</h2>
+          <form method="post" class="flex flex-col justify-center gap-4">
             <input type="hidden" name="gameId" value={game.id} />
             <input
               type="text"
@@ -222,30 +189,19 @@ export default defineRoute(async ({ url }, { params: { gameSlug }, renderNotFoun
               placeholder="Name"
               required
               autofocus
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
+              class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
             />
             <textarea
               name="description"
               placeholder="Description"
-              // @ts-ignore: attributify
-              bg="dark:slate-900"
-              border="~ invalid:red"
-              p="x-2 y-1"
-              rounded
+              class="dark:bg-slate-900 border invalid:border-red px-2 py-1 rounded"
             />
-            {/* @ts-ignore: attributify */}
-            <div flex justify="between">
+            <div class="flex justify-between">
               <Button type="submit" name="submit" value={PARAM_ADD}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-check h="4" w="4" />
+                <div class="i-tabler-check h-4 w-4" />
               </Button>
               <Link href={actorClose}>
-                {/* @ts-ignore: attributify */}
-                <div i-tabler-x h="4" w="4" />
+                <div class="i-tabler-x h-4 w-4" />
               </Link>
             </div>
           </form>
